@@ -36,4 +36,4 @@ const registerStaff = (req,res)=>{
     });
 };
 
-module.exports = {registerStaff};
+module.exports = { registerStaff };
