@@ -1,6 +1,5 @@
 const staff = require("./staffSchema");
 
-//Staff Registration
 const registerStaff = (req,res)=>{
     const newStaff = new staff({
         name: req.body.name,
@@ -36,4 +35,44 @@ const registerStaff = (req,res)=>{
     });
 };
 
-module.exports = { registerStaff };
+const viewAllStaff = (req,res)=>{
+    staff
+    .find()
+    .exec()
+    .then((data)=>{
+        res.json({
+            status: 500,
+            msg: "Staffs shown successfully",
+            data: data
+        });
+    })
+    .catch((error)=>{
+        res.json({
+            status: 200,
+            msg: "Staffs not displaying",
+            Error: error
+        });
+    });
+};
+
+const viewStaffByDepartment = (req,res)=>{
+    staff
+    .find({ department: req.params.department })
+    .exec()
+    .then((data)=>{
+        res.json({
+            status: 200,
+            msg: "Staffs obtained by department successfully",
+            data: data
+        });
+    })
+    .catch((error)=>{
+        res.json({
+            status: 500,
+            msg: "Data not obtained",
+            Error: error,
+        });
+    });
+}
+
+module.exports = { registerStaff,viewAllStaff, viewStaffByDepartment };

@@ -3,6 +3,7 @@ const router=express.Router()
 
 const staffController = require("./Staff/staffController");
 
+
 const patientController = require('./Patient/patientController');
 
 // router.get('/', function (req, res) {
@@ -11,6 +12,8 @@ const patientController = require('./Patient/patientController');
 
 //Staff
 router.post('/registerStaff', staffController.registerStaff) 
+router.get('/viewAllStaff', staffController.viewAllStaff)
+router.post('/viewStaffByDepartment/:department', staffController.viewStaffByDepartment)
 
 //Patient
 router.post("/registerPatient", patientController.registerPatient)
