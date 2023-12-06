@@ -14,9 +14,12 @@ const patientController = require('./Patient/patientController');
 router.post('/registerStaff', staffController.registerStaff) 
 router.get('/viewAllStaff', staffController.viewAllStaff)
 router.post('/viewStaffByDepartment/:department', staffController.viewStaffByDepartment)
+router.post('/staffLogin', staffController.staffLogin)
+router.post('/viewStaffByEmployeeId/:employeeId', staffController.viewStaffByEmployeeId)
 
 //Patient
 router.post("/registerPatient", patientController.registerPatient)
+router.post('/patientLogin', patientController.patientLogin)
 
 
 module.exports=router

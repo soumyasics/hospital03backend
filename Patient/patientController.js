@@ -37,4 +37,33 @@ const registerPatient = (req, res) => {
   })
 };
 
-module.exports = { registerPatient };
+const patientLogin = (req,res)=>{
+  const email = req.body.email;
+  const password = req.body.password;
+  patient
+  .findOne({email: email})
+  .exec()
+  .then((data)=>{
+    if(password === password){
+      res.json({
+        status: 200,
+        msg: "Patient login successfull",
+        data: data
+      })
+    } else {
+      res.json({
+        status: 500,
+        msg: "Incorrect password"
+      });
+    }
+  })
+  .catch((error)=>{
+    res.json({
+      status: 500,
+      msg: "Patient not found",
+      Error: error
+    })
+  })
+}
+
+module.exports = { registerPatient, patientLogin };
